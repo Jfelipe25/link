@@ -22,4 +22,8 @@
     "js-base64": "^3.7.4",
     "vuedraggable": "^4.1.0"
   }
+  ,
+  "engines": {
+    "node": "18.x"
+  }
 }
