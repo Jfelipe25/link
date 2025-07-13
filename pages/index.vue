@@ -18,6 +18,8 @@
           v-model:email="data.e"
           v-model:whatsapp="data.w"
           v-model:youtube="data.y"
+          v-model:tk="data.tk"
+          v-model:onlyfans="data.of"
         />
         <app-form-hr />
         <app-form-links v-model="data.ls" />
@@ -38,24 +40,44 @@
           <icon name="ph:paper-plane-tilt-bold" class="h-4 w-4" />
         </button>
         <a
-          href="https://github.com/fayazara/onelink"
+          href="https://www.nequi.com.co/"
           target="_blank"
           class="h-12 flex items-center space-x-2 px-4 border-r text-xs font-medium bg-white text-slate-700"
         >
-          <span> Github </span>
-          <icon name="mdi:github" class="h-4 w-4" />
+          <span> Pagar </span>
+          <icon name="mdi:money" class="h-4 w-4" />
+        </a>
+        <a
+          href="https://www.instagram.com/"
+          target="_blank"
+          class="h-12 flex items-center space-x-2 px-4 border-r text-xs font-medium bg-white text-slate-700"
+        >
+          <span> Hecho por Felipe Rodriguez </span>
+          <icon name="mdi:instagram" class="h-4 w-4" />
         </a>
       </div>
     </div>
     <app-form-preview :data="data" />
     <a
-      href="https://twitter.com/fayazara"
+      href="https://instagram.com/"
       target="_blank"
-      class="absolute bottom-0 right-0 bg-white rounded-tl-lg shadow px-4 py-1 font-medium text-sm text-gray-500"
+      class="hidden"
     >
-      Made by Fayaz
+      Hecho por Felipe Rodriguez
     </a>
   </div>
+  <div v-if="showCopyButton" class="mt-4 text-center">
+  <button
+    @click="copyPublishedLink"
+    class="inline-flex items-center px-4 py-2 bg-indigo-600 text-white text-sm rounded hover:bg-indigo-700"
+  >
+    📋 Copiar link de perfil
+  </button>
+
+  <span v-if="copied" class="ml-3 text-green-600 text-sm font-medium">
+    ✅ Copiado
+  </span>
+</div>
 </template>
 
 <script setup>
@@ -79,7 +101,7 @@ const data = ref({
 const prefillDemoData = () => {
   data.value = {
     n: "John Snow",
-    d: "I’m John Snow, the king in the north. I know Nothing.",
+    d: "Soy John Snow, el Rey en el Norte.",
     i: "https://i.insider.com/56743fad72f2c12a008b6cc0",
     f: "https://www.facebook.com/john_snow",
     t: "https://twitter.com/john_snow",
@@ -94,7 +116,7 @@ const prefillDemoData = () => {
       {
         l: "My Website",
         i: "ph:globe-duotone",
-        u: "https://example.com",
+        u: "https://google.com",
       },
       {
         l: "Amazon wishlist",

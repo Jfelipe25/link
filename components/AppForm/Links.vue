@@ -1,8 +1,8 @@
 <template>
-  <base-form-section title="Links" description="Add some links here">
+  <base-form-section title="Links" description="Agrega links aqui">
     <template #helpertext>
       <p class="mt-1 text-xs text-gray-600">
-        Icon keys can be found in
+        Encuentra mas íconos en:
         <a class="underline" href="https://icones.js.org/"
           >https://icones.js.org/</a
         >.

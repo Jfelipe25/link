@@ -68,6 +68,21 @@
           <icon name="ph:linkedin-logo-duotone" class="h-6 w-6" />
         </a>
       </span>
+
+      <!-- ✅ TikTok -->
+      <span v-if="acc.tk" class="p-1">
+        <a :href="acc.tk" target="_blank" rel="noopener | noreferrer">
+          <icon name="simple-icons:tiktok" class="h-6 w-6" />
+        </a>
+      </span>
+
+      <!-- ✅ OnlyFans -->
+      <span v-if="acc.of" class="p-1">
+        <a :href="acc.of" target="_blank" rel="noopener | noreferrer">
+          <icon name="simple-icons:onlyfans" class="h-6 w-6" />
+        </a>
+      </span>
+
     </div>
     <ul class="space-y-2">
       <ExternalLink
@@ -80,6 +95,7 @@
     </ul>
   </main>
 </template>
+
 <script setup>
 const props = defineProps({
   acc: {
@@ -99,8 +115,9 @@ const allSocialLinksAreEmpty = computed(() => {
     !props.acc.y &&
     !props.acc.e &&
     !props.acc.gh &&
-    !props.acc.l
+    !props.acc.l &&
+    !props.acc.tk &&  
+    !props.acc.of     
   );
 });
 </script>
-<style scoped></style>
