@@ -58,20 +58,16 @@
       </div>
     </div>
     <app-form-preview :data="data" />
-    <a
-      href="https://instagram.com/"
-      target="_blank"
-      class="hidden"
-    >
+    <a href="https://instagram.com/" target="_blank" class="hidden">
       Hecho por Felipe Rodriguez
     </a>
   </div>
-
 </template>
 
 <script setup>
 import { ref } from 'vue'
 import { encodeData } from '../utils/transformer'
+import { saveProfile } from '../utils/saveProfile'
 
 const data = ref({
   n: "",
@@ -91,10 +87,10 @@ const data = ref({
   ls: [],
 })
 
-const showCopyButton = ref(true)
 const copied = ref(false)
 
 const prefillDemoData = () => {
+  console.log("Demo data cargada") // 🟩 LOG de control
   data.value = {
     n: "John Snow",
     d: "Soy John Snow, el Rey en el Norte.",
@@ -120,24 +116,22 @@ const prefillDemoData = () => {
   }
 }
 
-const publish = () => {
-  if (typeof window !== 'undefined' && typeof navigator !== 'undefined') {
-    const url = `${window.location.origin}/1?data=${encodeData(data.value)}`
-    navigator.clipboard.writeText(url).then(() => {
+const publish = async () => {
+  console.log("🔹 Se hizo clic en Publish") // 🟦 LOG de control
+
+  try {
+    await saveProfile(data.value)
+    console.log("✅ Perfil guardado correctamente") // 🟩
+
+    if (typeof window !== 'undefined' && typeof navigator !== 'undefined') {
+      const url = `${window.location.origin}/1?data=${encodeData(data.value)}`
+      await navigator.clipboard.writeText(url)
       copied.value = true
-      alert("Link copied to clipboard")
-    })
+      alert("Perfil guardado y link copiado al portapapeles.")
+    }
+  } catch (err) {
+    console.error("❌ Error en publish:", err)
+    alert("Hubo un error al guardar en Supabase.")
   }
 }
-
-
-const copyPublishedLink = () => {
-  if (typeof window !== 'undefined' && typeof navigator !== 'undefined') {
-    const url = `${window.location.origin}/1?data=${encodeData(data.value)}`
-    navigator.clipboard.writeText(url).then(() => {
-      copied.value = true
-    })
-  }
-}
-
 </script>
