@@ -66,7 +66,7 @@
       Hecho por Felipe Rodriguez
     </a>
   </div>
-  
+
 </template>
 
 <script setup>
@@ -121,17 +121,23 @@ const prefillDemoData = () => {
 }
 
 const publish = () => {
-  const url = `${window.location.origin}/1?data=${encodeData(data.value)}`
-  navigator.clipboard.writeText(url).then(() => {
-    copied.value = true
-    alert("Link copied to clipboard")
-  })
+  if (typeof window !== 'undefined' && typeof navigator !== 'undefined') {
+    const url = `${window.location.origin}/1?data=${encodeData(data.value)}`
+    navigator.clipboard.writeText(url).then(() => {
+      copied.value = true
+      alert("Link copied to clipboard")
+    })
+  }
 }
 
+
 const copyPublishedLink = () => {
-  const url = `${window.location.origin}/1?data=${encodeData(data.value)}`
-  navigator.clipboard.writeText(url).then(() => {
-    copied.value = true
-  })
+  if (typeof window !== 'undefined' && typeof navigator !== 'undefined') {
+    const url = `${window.location.origin}/1?data=${encodeData(data.value)}`
+    navigator.clipboard.writeText(url).then(() => {
+      copied.value = true
+    })
+  }
 }
+
 </script>
