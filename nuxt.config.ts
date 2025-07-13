@@ -10,9 +10,6 @@ export default defineNuxtConfig({
   },
 
   nitro: {
-    preset: 'vercel',
-    errorHandler: (error, event) => {
-      console.error('Error capturado en Nitro:', error)
-    }
+    // sin preset: evita usar edge functions de Vercel
   }
 })
