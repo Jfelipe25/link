@@ -1,6 +1,6 @@
-import { supabase } from './supabase'
-
 export async function saveProfile(data) {
+  console.log("Guardando perfil en Supabase:", data) // <--- este log es clave
+
   const { error } = await supabase
     .from('profiles')
     .insert([{
