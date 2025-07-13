@@ -66,22 +66,13 @@
       Hecho por Felipe Rodriguez
     </a>
   </div>
-  <div v-if="showCopyButton" class="mt-4 text-center">
-  <button
-    @click="copyPublishedLink"
-    class="inline-flex items-center px-4 py-2 bg-indigo-600 text-white text-sm rounded hover:bg-indigo-700"
-  >
-    📋 Copiar link de perfil
-  </button>
-
-  <span v-if="copied" class="ml-3 text-green-600 text-sm font-medium">
-    ✅ Copiado
-  </span>
-</div>
+  
 </template>
 
 <script setup>
-import { encodeData } from "../utils/transformer";
+import { ref } from 'vue'
+import { encodeData } from '../utils/transformer'
+
 const data = ref({
   n: "",
   d: "",
@@ -95,8 +86,13 @@ const data = ref({
   e: "",
   w: "",
   y: "",
+  tk: "",
+  of: "",
   ls: [],
-});
+})
+
+const showCopyButton = ref(true)
+const copied = ref(false)
 
 const prefillDemoData = () => {
   data.value = {
@@ -112,40 +108,30 @@ const prefillDemoData = () => {
     w: "+918888888888",
     y: "https://youtube.com/@john_snow",
     l: "https://linkedin.com/john_snow",
+    tk: "",
+    of: "",
     ls: [
-      {
-        l: "My Website",
-        i: "ph:globe-duotone",
-        u: "https://google.com",
-      },
-      {
-        l: "Amazon wishlist",
-        i: "ant-design:amazon-outlined",
-        u: "https://amazon.in",
-      },
-      {
-        l: "React JS course",
-        i: "grommet-icons:reactjs",
-        u: "https://reactjs.org/",
-      },
-      {
-        l: "Donate for our cause",
-        i: "iconoir:donate",
-        u: "https://who.int",
-      },
-      {
-        l: "Download my resume",
-        i: "ph:file-pdf",
-        u: "https://google.com",
-      },
+      { l: "My Website", i: "ph:globe-duotone", u: "https://google.com" },
+      { l: "Amazon wishlist", i: "ant-design:amazon-outlined", u: "https://amazon.in" },
+      { l: "React JS course", i: "grommet-icons:reactjs", u: "https://reactjs.org/" },
+      { l: "Donate for our cause", i: "iconoir:donate", u: "https://who.int" },
+      { l: "Download my resume", i: "ph:file-pdf", u: "https://google.com" },
     ],
-  };
-};
+  }
+}
 
 const publish = () => {
-  const url = `${window.location.origin}/1?data=${encodeData(data.value)}`;
+  const url = `${window.location.origin}/1?data=${encodeData(data.value)}`
   navigator.clipboard.writeText(url).then(() => {
-    alert("Link copied to clipboard");
-  });
-};
+    copied.value = true
+    alert("Link copied to clipboard")
+  })
+}
+
+const copyPublishedLink = () => {
+  const url = `${window.location.origin}/1?data=${encodeData(data.value)}`
+  navigator.clipboard.writeText(url).then(() => {
+    copied.value = true
+  })
+}
 </script>

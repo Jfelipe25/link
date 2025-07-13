@@ -5,10 +5,6 @@ export default defineNuxtConfig({
     transpile: ['@headlessui/vue'],
   },
 
-  colorMode: {
-    classSuffix: '',
-  },
-
   nitro: {
     // sin preset: evita usar edge functions de Vercel
   }
