@@ -2,6 +2,9 @@
   <div class="h-screen grid grid-cols-3 divide-x">
     <div class="col-span-2 h-screen flex flex-col bg-slate-100">
       <div class="flex-1 overflow-y-auto p-8">
+      <div class="p-4 bg-yellow-200 text-black font-bold">
+  Este mensaje debe verse si index.vue está bien conectado
+</div>
         <app-form-profile
           v-model:name="data.n"
           v-model:desc="data.d"
